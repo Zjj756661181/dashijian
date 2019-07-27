@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/iconfont.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -25,14 +26,14 @@
                 <i class="iconfont icon-key"></i>
                 <input type="text" class="input_txt" placeholder="邮箱/手机号" id="txtName">
                 <input type="password" class="input_pass" placeholder="密码" id="passWord">
-                <input type="submit" class="input_sub" value="登 录" id="btnLogin" type="button">
+                <input type="button" class="input_sub" value="登 录" id="btnLogin">
             </form>
         </div>
 
 
     </div>
     <!-- ------------------------------------ -->
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+     <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -55,11 +56,12 @@
     <script src="./js/bootstrap/js/bootstrap.min.js"></script>
     <script>
         //设点击事件
+
         $('#btnLogin').on('click', function () {
             //获取用户名信息
             var name = $('#txtName').val();
             var password = $('#passWord').val();
-            //检测用户名或密码输入是否为空
+                        //检测用户名或密码输入是否为空
             if (name === '' || password === '') {
                 $("#modalMsg").text('用户名或密码不能为空');
                 $('#myModal').modal('show');
@@ -72,6 +74,7 @@
                 //后端提供名赋与前端设置名
                 data: { user_name: name, password: password },
                 success: function (res) {
+                    debugger
                     //根据返回值，给出提示
                     if (res.code === 200) {
                         //登录信息正确
@@ -83,8 +86,10 @@
                         //-----弹框样式
                         $('#myModal').modal('show');
 
-                    };
+                    }; 
+                  
                 }
+               
             });
         });
 
