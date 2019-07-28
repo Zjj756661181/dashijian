@@ -11,11 +11,14 @@
     <link rel="stylesheet" href="css/iconfont.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="js/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="./js/bootstrap/css/bootstrap.min.css"></script> -->
+    <!-- <script src="./css/demo.css"></script> -->
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid"> 
         <div class="common_title">
             文章类别管理
         </div>
@@ -111,10 +114,10 @@
     <!-- -------------------------------- -->
     <script src="./js/template-web.js"></script>
     <script type="text/html" id="categoryTr">
-        {{each data item }}
+        {{each data ele }}
         <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.slug}}</td>
+            <td>{{ele.name}}</td>
+            <td>{{ele.slug}}</td>
             <td class="text-center">
                 <a href="javascript:editTr({&quot;id&quot;:&quot;2&quot;,&quot;slug&quot;:&quot;funny&quot;,&quot;name&quot;:&quot;奇趣事&quot;});"
                     class="btn btn-info btn-xs">编辑</a>
@@ -151,16 +154,31 @@
     <script>
         // 基本步骤 ：
         // 0.清除表格中的内容$("#tbody")
-        // 1.发请求
-        // 2.根据请求的数据，拼接页面，更新表格
-        $("#tbody").empty();
-        $.getJSON('http://localhost:8000/admin/category_search', function (res) {
-            // console.log(res);
-            if (res.code === 200) {
-                $('#tbody').html(template('categoryTr',res));
-            }
+        function getAllCategory() {
+            
+            // $("#tbody").empty();
+            // 1.发请求
+            $.getJSON("http://localhost:8000/admin/category_search", function (res) {
+                // console.log(res);
+                // 2.根据请求的数据，拼接页面，更新表格
+                if (res.code === 200) {
+                    console.log(res);
+                    
+                    $("#tbody").html(template("categoryTr", res));
+                }
 
-        })
+            });
+
+            getAllCategory();
+
+            function deleteTr() {
+                $.post("http://localhost:8000/admin/category_delete", { id: id }, function (res) {
+                    if (res.code === 200) {
+                        getAllCategory();
+                    }
+                });
+            };
+        }
     </script>
 </body>
 
