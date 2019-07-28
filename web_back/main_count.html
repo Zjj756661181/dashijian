@@ -19,7 +19,11 @@
         <div class="row spannel_list">
             <div class="col-sm-3 col-xs-6">
                 <div class="spannel">
+<<<<<<< HEAD
                     <em id="all_count">10015</em><span>篇</span>
+=======
+                    <em id="all_count" >10015</em><span>篇</span>
+>>>>>>> dev
                     <b>总文章数</b>
                 </div>
             </div>
@@ -344,6 +348,7 @@
             oColumn.setOption(oColumnopt);
 
     </script>
+<<<<<<< HEAD
     <!-- ------------------------------------------ -->
     <script>
        $.getJSON("http://localhost:8000/admin/main_count",function(res){
@@ -360,6 +365,31 @@
            }
        })
     </script>
+=======
+
+    <script>
+        //先固定格式 检测是否获取到 --- 是：就将信息添加页面中(数量统计)
+       $.getJSON('http://localhost:8000/admin/article_count',function(res){
+           console.log(res);
+           if(res.code === 200) {
+              $('#all_count').text(res.data.all_count);
+              $('#day_count').text(res.data.day_count);
+           }
+       });
+    //    (评论统计)
+       $.getJSON('http://localhost:8000/admin/comment_count',function(res){
+           console.log(res);
+           if(res.code === 200) {
+              $('#all_count1').text(res.data.all_count);
+              $('#day_count2').text(res.data.day_count);
+           }
+           
+       });
+       
+    
+    </script>
+
+>>>>>>> dev
 </body>
 
 </html>
