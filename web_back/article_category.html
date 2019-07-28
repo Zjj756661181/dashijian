@@ -191,12 +191,12 @@
             $.post('http://localhost:8000/admin/category_delete', { id: id }, function (res) {
                 if (res.code === 200) {
                     //点击删除时提示
-                    $('#modalMsg').text('确定要删除么')
+                    $('#modalMsg').text('确定要删除么');
                     $('#myModal').modal('show');
                     $('#queding').click(function(){
                         $('#myModal').modal('hide');
                         getAllCategory();
-                    })
+                    });
                 }
             })
 
