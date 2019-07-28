@@ -140,7 +140,7 @@
             <td class="text-center">
                 <a href="javascript:editTr({&quot;id&quot;:&quot;2&quot;,&quot;slug&quot;:&quot;funny&quot;,&quot;name&quot;:&quot;奇趣事&quot;});"
                     class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:deleteTr({{item.id}});" class="btn btn-danger btn-xs" >删除</a>
+                <a href="javascript:deleteTr({{ele.id}});" class="btn btn-danger btn-xs" >删除</a>
             </td>
         </tr>
         {{/each}}
@@ -173,36 +173,9 @@
     <script>
         // 基本步骤 ：
         // 0.清除表格中的内容$("#tbody")
-<<<<<<< HEAD
-        function getAllCategory() {
-            
-            // $("#tbody").empty();
             // 1.发请求
-            $.getJSON("http://localhost:8000/admin/category_search", function (res) {
-                // console.log(res);
-                // 2.根据请求的数据，拼接页面，更新表格
-                if (res.code === 200) {
-                    console.log(res);
-                    
-                    $("#tbody").html(template("categoryTr", res));
-                }
-
-            });
-
-            getAllCategory();
-
-            function deleteTr() {
-                $.post("http://localhost:8000/admin/category_delete", { id: id }, function (res) {
-                    if (res.code === 200) {
-                        getAllCategory();
-                    }
-                });
-            };
-        }
-=======
-        // 1.发请求
         // 2.根据请求的数据，拼接页面，更新表格
-        function getCat() {
+        function getAllCategory() {
             $("#tbody").empty();
             $.getJSON('http://localhost:8000/admin/category_search', function (res) {
                 console.log(res);
@@ -211,15 +184,10 @@
                 };
             });
         }
-
-        getCat();
+        getAllCategory();
         //删除事件
-        // var id = data.id;
-        // console.log(id);
-
-
         function deleteTr(id) {
-            // alert(id)
+            
             $.post('http://localhost:8000/admin/category_delete', { id: id }, function (res) {
                 if (res.code === 200) {
                     //点击删除时提示
@@ -227,20 +195,13 @@
                     $('#myModal').modal('show');
                     $('#queding').click(function(){
                         $('#myModal').modal('hide');
-                        getCat();
+                        getAllCategory();
                     })
                 }
-
-
-                // if ($('#queding').click()) {
-                
-                //     getCat();
-                // }
             })
 
         }
 
->>>>>>> dev
     </script>
 </body>
 
